@@ -5,6 +5,9 @@ public class PinEntered implements ATMState {
 
     private ATM atm;
     private int newCash;
+    private boolean accept;
+
+
 
     public PinEntered(ATM atm) {
         this.atm = atm;
@@ -34,7 +37,7 @@ public class PinEntered implements ATMState {
             System.out.println("We dont have such cash in atm, do u wanna lowest?");
             newCash =atm.getCashInATM();
             System.out.println("We can offer u " + newCash);
-            atm.setCashInATM(atm.getCashInATM() - newCash);
+
         }
         else{
             System.out.println(cash + "is withdrawn");

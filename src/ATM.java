@@ -8,13 +8,15 @@ public class ATM {
     private ATMState enteredCorrectPin;
     private ATMState NoCash;
     private ATMState atmStatel;
-
-    private int CashInATM = 40000;
     private Card card;
 
-    public ATM() {
 
-        hasCard = new HasCard(this, card);
+
+    private int CashInATM = 40000;
+
+    public ATM() {
+        card = new Card();
+        hasCard = new HasCard(this,card);
         noCard = new NoCard(this);
         enteredCorrectPin = new PinEntered(this);
         NoCash = new NoCash(this);
@@ -29,6 +31,10 @@ public class ATM {
     public ATM setCashInATM(int cashInATM) {
         CashInATM = cashInATM;
         return this;
+    }
+
+    public Card getCard() {
+        return card;
     }
 
     public int getCashInATM() {

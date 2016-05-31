@@ -10,6 +10,8 @@ public class HasCard implements ATMState {
     public HasCard(ATM atm, Card card) {
         this.atm = atm;
         this.card = card;
+
+
     }
 
 
@@ -27,7 +29,8 @@ public class HasCard implements ATMState {
 
     @Override
     public void enterPin(int pin) {
-        if(pin == 1234){
+
+        if(pin == card.getPin()){
             System.out.println("You've entered correct pin");
 //            card.setActivate(true);
             atm.setAtmStatel(atm.getEnteredCorrectPin());
@@ -35,7 +38,6 @@ public class HasCard implements ATMState {
         else{
             System.out.println("Wrong pin");
             card.setActivate(false);
-            atm.setAtmStatel(atm.getNoCard());
         }
     }
 

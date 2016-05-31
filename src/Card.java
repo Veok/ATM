@@ -7,18 +7,16 @@ public class Card {
     private boolean isActivate;
 
 
-
-    public Card(int pin) {
-        this.pin = pin;
-    }
-
-    public int getPin() {
-        return pin;
+    public Card() {
     }
 
     public Card setPin(int pin) {
         this.pin = pin;
         return this;
+    }
+
+    public int getPin() {
+        return pin;
     }
 
     public boolean isActivate() {

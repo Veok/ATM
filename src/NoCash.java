@@ -3,10 +3,11 @@
  */
 public class NoCash implements ATMState {
 
-    private ATMState atmState;
 
-    public NoCash(ATMState atmState) {
-        this.atmState = atmState;
+private ATM atm;
+
+    public NoCash(ATM atm) {
+        this.atm = atm;
     }
 
     @Override
@@ -21,13 +22,13 @@ public class NoCash implements ATMState {
     }
 
     @Override
-    public void enterPin() {
+    public void enterPin(int pin) {
         System.out.println("No Cash in Machine. ATM BLOCKED");
 
     }
 
     @Override
-    public void requestCash() {
+    public void requestCash(int cash) {
         System.out.println("No Cash in Machine. ATM BLOCKED");
 
     }

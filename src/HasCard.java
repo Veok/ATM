@@ -3,15 +3,21 @@
  */
 public class HasCard implements ATMState {
 
-    private ATMState atmState;
 
-    public HasCard(ATMState atmState) {
-        this.atmState = atmState;
+    private ATM atm;
+    private Card card;
+
+    public HasCard(ATM atm, Card card) {
+        this.atm = atm;
+        this.card = card;
     }
+
+
 
     @Override
     public void ejectCard() {
-
+        System.out.println("Your Card is ejected");
+        atm.setAtmStatel(atm.getNoCard());
     }
 
     @Override
@@ -20,12 +26,21 @@ public class HasCard implements ATMState {
     }
 
     @Override
-    public void enterPin() {
-        System.out.println("Pin already entered");
+    public void enterPin(int pin) {
+        if(pin == 1234){
+            System.out.println("You've entered correct pin");
+//            card.setActivate(true);
+            atm.setAtmStatel(atm.getEnteredCorrectPin());
+        }
+        else{
+            System.out.println("Wrong pin");
+            card.setActivate(false);
+            atm.setAtmStatel(atm.getNoCard());
+        }
     }
 
     @Override
-    public void requestCash() {
-
+    public void requestCash(int cash) {
+        System.out.println("You've not entered a pin");
     }
 }

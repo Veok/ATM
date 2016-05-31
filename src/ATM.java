@@ -5,20 +5,19 @@ public class ATM {
 
     private ATMState hasCard;
     private ATMState noCard;
-    private ATMState EnteredCorrectPin;
+    private ATMState enteredCorrectPin;
     private ATMState NoCash;
     private ATMState atmStatel;
+
     private int CashInATM = 40000;
     private Card card;
 
-    public ATM(ATMState atmStatel, Card card, int cashInATM, ATMState enteredCorrectPin, ATMState hasCard, ATMState noCard, ATMState noCash) {
-        this.atmStatel = atmStatel;
-        this.card = card;
-        CashInATM = cashInATM;
-        EnteredCorrectPin = enteredCorrectPin;
-        this.hasCard = hasCard;
-        this.noCard = noCard;
-        NoCash = noCash;
+    public ATM() {
+
+        hasCard = new HasCard(this, card);
+        noCard = new NoCard(this);
+        enteredCorrectPin = new PinEntered(this);
+        NoCash = new NoCash(this);
 
         atmStatel = noCard;
 
@@ -26,4 +25,40 @@ public class ATM {
             atmStatel = NoCash;
         }
     }
+
+    public ATM setCashInATM(int cashInATM) {
+        CashInATM = cashInATM;
+        return this;
+    }
+
+    public int getCashInATM() {
+        return CashInATM;
+    }
+
+    public ATM setAtmStatel(ATMState atmStatel) {
+        this.atmStatel = atmStatel;
+        return this;
+
+
+    }
+    public void insertCard(){
+        atmStatel.insertCard();
+    }
+
+    public void ejectCard(){
+        atmStatel.ejectCard();
+    }
+
+    public void enterPin(int pin){
+        atmStatel.enterPin(pin);
+    }
+
+    public void requestCash(int cash){
+        atmStatel.requestCash(cash);
+    }
+
+    public  ATMState getHasCard(){return hasCard;}
+    public  ATMState getNoCard(){return  noCard;}
+    public ATMState getEnteredCorrectPin() {return  enteredCorrectPin;}
+    public  ATMState getNoCash(){return  NoCash;}
 }

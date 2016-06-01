@@ -5,6 +5,6 @@ public interface ATMState {
 
     void insertCard();
     void ejectCard();
-    void enterPin(int pin);
+    void enterPin(int pin, int i);
     void requestCash(int cash);
 }

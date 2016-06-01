@@ -5,7 +5,7 @@ public class PinEntered implements ATMState {
 
     private ATM atm;
     private int newCash;
-    private boolean accept;
+
 
 
 
@@ -26,23 +26,26 @@ public class PinEntered implements ATMState {
     }
 
     @Override
-    public void enterPin(int pin)
+    public void enterPin(int pin, int i)
     {
-        System.out.println("You already entered a Pin");
+
+        System.out.println("Prosze czekac");
+
+
     }
 
     @Override
     public void requestCash(int cash) {
         if(cash > atm.getCashInATM()){
-            System.out.println("We dont have such cash in atm, do u wanna lowest?");
+            System.out.println("Bankomat nie posiada zadanej sumy pieniędzy");
             newCash =atm.getCashInATM();
-            System.out.println("We can offer u " + newCash);
+            System.out.println("Możliwa suma pieniędzy do wypłaty: " + newCash);
 
         }
         else{
-            System.out.println(cash + "is withdrawn");
+            System.out.println(cash + " wypłacono");
             atm.setCashInATM(atm.getCashInATM() - cash);
-            System.out.println("Card is ejected");
+            System.out.println("Karta została wyciągnięta");
             atm.setAtmStatel(atm.getNoCard());
             if(atm.getCashInATM() <=0){
                 atm.setAtmStatel(atm.getNoCash());

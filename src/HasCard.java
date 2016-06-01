@@ -28,18 +28,37 @@ public class HasCard implements ATMState {
     }
 
     @Override
-    public void enterPin(int pin) {
+    public void enterPin(int pin, int i) {
+
+
+
 
         if(pin == card.getPin()){
-            System.out.println("You've entered correct pin");
-//            card.setActivate(true);
+
+            System.out.println("Podałeś prawidłowy nr PIN");
             atm.setAtmStatel(atm.getEnteredCorrectPin());
+
+
         }
-        else{
-            System.out.println("Wrong pin");
+        else {
+
+            if(i<3){
+            System.out.println("Nieprawidłowy nr PIN");
+            System.out.println("*****");
+            System.out.println("Podaj numer PIN");}
+            else if(i==3){
             card.setActivate(false);
+                atm.setAtmStatel(atm.getNoCard());
+                atm.getNoCard().insertCard();
+
+
+
+
+            }
+
         }
-    }
+        }
+
 
     @Override
     public void requestCash(int cash) {

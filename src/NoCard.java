@@ -5,9 +5,11 @@ public class NoCard implements ATMState {
 
 
 private ATM atm;
+    private Card card;
 
-    public NoCard(ATM atm) {
+    public NoCard(ATM atm, Card card) {
         this.atm = atm;
+        this.card = card;
     }
 
     @Override
@@ -18,13 +20,19 @@ private ATM atm;
 
     @Override
     public void insertCard() {
-        System.out.println("Enter pin");
-        atm.setAtmStatel(atm.getHasCard());
+        if(card.isActivate()){
+        System.out.println("Podaj nr PIN");
+        atm.setAtmStatel(atm.getHasCard());}
+        else{
+            System.out.println("KARTA ZABLOKOWANA");
+            atm.getHasCard().ejectCard();
+        }
     }
 
     @Override
-    public void enterPin(int pin) {
+    public void enterPin(int pin, int i) {
         System.out.println("You've not entered pin");
+
 
     }
 

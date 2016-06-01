@@ -3,11 +3,14 @@
  */
 public class Card {
 
-    private int pin;
+    private int pin = 1234;
     private boolean isActivate;
 
 
+
     public Card() {
+
+        setActivate(true);
     }
 
     public Card setPin(int pin) {
@@ -19,12 +22,12 @@ public class Card {
         return pin;
     }
 
-    public boolean isActivate() {
-        return isActivate;
-    }
-
     public Card setActivate(boolean activate) {
         isActivate = activate;
         return this;
+    }
+
+    public boolean isActivate() {
+        return isActivate;
     }
 }

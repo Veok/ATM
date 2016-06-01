@@ -18,18 +18,21 @@ private ATM atm;
     @Override
     public void insertCard() {
         System.out.println("No Cash in Machine. ATM BLOCKED");
+        atm.ejectCard();
 
     }
 
     @Override
-    public void enterPin(int pin) {
+    public void enterPin(int pin, int i) {
         System.out.println("No Cash in Machine. ATM BLOCKED");
+        atm.ejectCard();
 
     }
 
     @Override
     public void requestCash(int cash) {
         System.out.println("No Cash in Machine. ATM BLOCKED");
+        atm.ejectCard();
 
     }
 }

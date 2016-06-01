@@ -17,7 +17,7 @@ public class ATM {
     public ATM() {
         card = new Card();
         hasCard = new HasCard(this,card);
-        noCard = new NoCard(this);
+        noCard = new NoCard(this, card);
         enteredCorrectPin = new PinEntered(this);
         NoCash = new NoCash(this);
 
@@ -26,6 +26,8 @@ public class ATM {
         if(CashInATM < 0 ){
             atmStatel = NoCash;
         }
+
+
     }
 
     public ATM setCashInATM(int cashInATM) {
@@ -55,8 +57,8 @@ public class ATM {
         atmStatel.ejectCard();
     }
 
-    public void enterPin(int pin){
-        atmStatel.enterPin(pin);
+    public void enterPin(int pin, int i){
+        atmStatel.enterPin(pin, i);
     }
 
     public void requestCash(int cash){

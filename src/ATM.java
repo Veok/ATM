@@ -9,6 +9,7 @@ public class ATM {
     private ATMState NoCash;
     private ATMState atmStatel;
     private Card card;
+    private  boolean ATMblocked;
 
 
 
@@ -59,6 +60,16 @@ public class ATM {
 
     public void enterPin(int pin, int i){
         atmStatel.enterPin(pin, i);
+    }
+
+
+    public boolean isATMblocked() {
+        return ATMblocked;
+    }
+
+    public ATM setATMblocked(boolean ATMblocked) {
+        this.ATMblocked = ATMblocked;
+        return this;
     }
 
     public void requestCash(int cash){

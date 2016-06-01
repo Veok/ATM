@@ -29,13 +29,16 @@ public class PinEntered implements ATMState {
     public void enterPin(int pin, int i)
     {
 
-        System.out.println("Prosze czekac");
+        System.out.println("You already entered a Pin");
+
 
 
     }
 
     @Override
     public void requestCash(int cash) {
+
+        atm.getCard().setCorrectPin(false);
         if(cash > atm.getCashInATM()){
             System.out.println("Bankomat nie posiada zadanej sumy pieniędzy");
             newCash =atm.getCashInATM();
@@ -48,7 +51,9 @@ public class PinEntered implements ATMState {
             System.out.println("Karta została wyciągnięta");
             atm.setAtmStatel(atm.getNoCard());
             if(atm.getCashInATM() <=0){
+                atm.setATMblocked(true);
                 atm.setAtmStatel(atm.getNoCash());
+
             }
         }
 

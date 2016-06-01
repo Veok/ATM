@@ -23,6 +23,7 @@ private ATM atm;
         if(card.isActivate()){
         System.out.println("Podaj nr PIN");
         atm.setAtmStatel(atm.getHasCard());}
+
         else{
             System.out.println("KARTA ZABLOKOWANA");
             atm.getHasCard().ejectCard();

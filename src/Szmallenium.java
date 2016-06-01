@@ -9,6 +9,7 @@ public class Szmallenium {
 
         ATM atm = new ATM();
         atm.getCard().setActivate(true);
+        atm.setATMblocked(false);
 
 
         Scanner in = new Scanner(System.in);
@@ -16,6 +17,8 @@ public class Szmallenium {
         boolean quit = false;
 
         do {
+
+
             System.out.println("*********SZMALLENIUM ATM*********");
             System.out.println("Wciśnij 1 aby włożyć kartę");
             System.out.println("Wciśnij 0 aby wyjść");
@@ -25,18 +28,28 @@ public class Szmallenium {
 
             switch (userChoice) {
                 case 1: {
-                    atm.insertCard();
                     int i = 0;
-                    if(atm.getCard().isActivate()){
-                    do {
+                    int pin;
 
-                        i++;
-                        int pin;
-                        pin = in.nextInt();
-                        atm.enterPin(pin, i);
+                 if(atm.isATMblocked()){
+                System.out.println("BANKOMAT ZABLOKOWANY");
+                  }
+                   else
+                     atm.insertCard();
+
+                    if (atm.getCard().isActivate()) {
+                        do {
+
+                            if (atm.getCard().isCorrectPin()) {
+                                break;
+                            } else {
+                                i++;
+                                pin = in.nextInt();
+                                atm.enterPin(pin, i);
+                            }
 
 
-                    } while (i < 3);
+                        } while ((i < 3));
 
 
                         if (atm.getCard().isActivate()) {
@@ -81,4 +94,7 @@ public class Szmallenium {
 
 
     }
+
+
+
 }

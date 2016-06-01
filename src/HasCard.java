@@ -15,7 +15,6 @@ public class HasCard implements ATMState {
     }
 
 
-
     @Override
     public void ejectCard() {
         System.out.println("Your Card is ejected");
@@ -31,33 +30,24 @@ public class HasCard implements ATMState {
     public void enterPin(int pin, int i) {
 
 
+        if (pin == card.getPin()) {
 
-
-        if(pin == card.getPin()){
 
             System.out.println("Podałeś prawidłowy nr PIN");
+            card.setCorrectPin(true);
             atm.setAtmStatel(atm.getEnteredCorrectPin());
 
 
-        }
-        else {
-
-            if(i<3){
+        } else if (i < 3) {
             System.out.println("Nieprawidłowy nr PIN");
             System.out.println("*****");
-            System.out.println("Podaj numer PIN");}
-            else if(i==3){
+            System.out.println("Podaj numer PIN");
+        } else if (i == 3) {
             card.setActivate(false);
-                atm.setAtmStatel(atm.getNoCard());
-                atm.getNoCard().insertCard();
-
-
-
-
-            }
-
+            atm.setAtmStatel(atm.getNoCard());
+            atm.getNoCard().insertCard();
         }
-        }
+    }
 
 
     @Override

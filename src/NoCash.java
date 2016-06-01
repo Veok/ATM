@@ -12,27 +12,51 @@ private ATM atm;
 
     @Override
     public void ejectCard() {
-        System.out.println("No Cash in Machine. ATM BLOCKED");
+        if(!atm.isATMblocked()){
+            atm.setAtmStatel(atm.getHasCard());
+        }
+        else
+        System.out.println("No Cash in Machine. ATM BLOCKED1");
+       atm.getHasCard().ejectCard();
+
+
+
     }
 
     @Override
     public void insertCard() {
-        System.out.println("No Cash in Machine. ATM BLOCKED");
-        atm.ejectCard();
+        if(!atm.isATMblocked()){
+            atm.setAtmStatel(atm.getHasCard());
+        }
+        else
+
+            System.out.println("No Cash in Machine. ATM BLOCKED2");
+             atm.getHasCard().ejectCard();
+
 
     }
 
     @Override
     public void enterPin(int pin, int i) {
-        System.out.println("No Cash in Machine. ATM BLOCKED");
-        atm.ejectCard();
+        if(!atm.isATMblocked()){
+            atm.setAtmStatel(atm.getHasCard());
+        }
+        else
+            System.out.println("No Cash in Machine. ATM BLOCKED3");
+        atm.getHasCard().ejectCard();
+
 
     }
 
     @Override
     public void requestCash(int cash) {
-        System.out.println("No Cash in Machine. ATM BLOCKED");
-        atm.ejectCard();
+        if(!atm.isATMblocked()){
+            atm.setAtmStatel(atm.getHasCard());
+        }
+        else
+            System.out.println("No Cash in Machine. ATM BLOCKED4");
+        atm.getHasCard().ejectCard();
+
 
     }
 }

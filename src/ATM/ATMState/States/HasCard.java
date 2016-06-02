@@ -1,8 +1,13 @@
+package ATM.ATMState.States;
+
+import ATM.ATM;
+import ATM.ATMState.ATMState;
+import ATM.Card.Card;
+
 /**
  * Created by L on 28.05.2016.
  */
 public class HasCard implements ATMState {
-
 
     private ATM atm;
     private Card card;
@@ -11,19 +16,17 @@ public class HasCard implements ATMState {
         this.atm = atm;
         this.card = card;
 
-
     }
 
 
     @Override
     public void ejectCard() {
-        System.out.println("Your Card is ejected");
-        atm.setAtmStatel(atm.getNoCard());
+        System.out.println("Twoja karta zostałą wydana");
+        atm.setAtmState(atm.getNoCard());
     }
 
     @Override
     public void insertCard() {
-        System.out.println("Card already inserted");
     }
 
     @Override
@@ -35,7 +38,7 @@ public class HasCard implements ATMState {
 
             System.out.println("Podałeś prawidłowy nr PIN");
             card.setCorrectPin(true);
-            atm.setAtmStatel(atm.getEnteredCorrectPin());
+            atm.setAtmState(atm.getEnteredCorrectPin());
 
 
         } else if (i < 3) {
@@ -44,14 +47,12 @@ public class HasCard implements ATMState {
             System.out.println("Podaj numer PIN");
         } else if (i == 3) {
             card.setActivate(false);
-            atm.setAtmStatel(atm.getNoCard());
+            atm.setAtmState(atm.getNoCard());
             atm.getNoCard().insertCard();
         }
     }
 
-
     @Override
     public void requestCash(int cash) {
-        System.out.println("You've not entered a pin");
     }
 }

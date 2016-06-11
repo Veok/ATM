@@ -19,26 +19,38 @@ public class NoCard implements ATMState {
     }
 
     @Override
-    public void ejectCard() {}
+    public ATMState ejectCard() {
+        throw new IllegalStateException();
+
+    }
 
     @Override
-    public void insertCard() {
+    public ATMState insertCard() {
+
+        /** Jesli karta jest aktywna, to nastepuje zmiana stanu atm na HasCard. */
+
         if (card.isActivate()) {
             System.out.println("****");
             System.out.println("Podaj numer PIN");
-            atm.setAtmState(atm.getHasCard());
+            return new HasCard(atm,card);
         } else {
             System.out.println("*********************************");
             System.out.println("KARTA ZABLOKOWANA");
-            atm.getHasCard().ejectCard();
             System.out.println("*********************************");
+            return this;
 
         }
     }
 
     @Override
-    public void enterPin(int pin, int i) {}
+    public ATMState enterPin(int pin, int i) {
+        throw new IllegalStateException();
+
+    }
 
     @Override
-    public void requestCash(int cash){}
+    public ATMState requestCash(int cash) {
+        throw new IllegalStateException();
+
+    }
 }

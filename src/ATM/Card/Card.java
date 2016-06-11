@@ -15,6 +15,10 @@ public class Card {
         setCorrectPin(false);
     }
 
+
+    /**
+     * ustawienie pinu do karty
+     */
     public int getPin() {
         return 1234;
     }

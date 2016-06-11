@@ -12,31 +12,18 @@ import ATM.Card.Card;
  */
 public class ATM {
 
-    private ATMState hasCard;
-    private ATMState noCard;
-    private ATMState enteredCorrectPin;
-    private ATMState NoCash;
-    private ATMState atmState;
+
     private Card card;
     private boolean ATMBlocked;
 
-
+    /**
+     * Gotowka w skrytce atm
+     */
     private int cashInATM = 40000;
 
-    public ATM() {
+    public ATM(Card card) {
 
-        card = new Card();
-        hasCard = new HasCard(this, card);
-        noCard = new NoCard(this, card);
-        enteredCorrectPin = new PinEntered(this);
-        NoCash = new NoCash(this);
-
-        atmState = noCard;
-
-        if (cashInATM < 0) {
-            atmState = NoCash;
-        }
-
+        this.card = card;
 
     }
 
@@ -53,26 +40,6 @@ public class ATM {
         return cashInATM;
     }
 
-    public ATM setAtmState(ATMState atmStatel) {
-        this.atmState = atmStatel;
-        return this;
-
-
-    }
-
-    public void insertCard() {
-        atmState.insertCard();
-    }
-
-    public void ejectCard() {
-        atmState.ejectCard();
-    }
-
-    public void enterPin(int pin, int i) {
-        atmState.enterPin(pin, i);
-    }
-
-
     public boolean isATMBlocked() {
         return ATMBlocked;
     }
@@ -82,23 +49,5 @@ public class ATM {
         return this;
     }
 
-    public void requestCash(int cash) {
-        atmState.requestCash(cash);
-    }
 
-    public ATMState getHasCard() {
-        return hasCard;
-    }
-
-    public ATMState getNoCard() {
-        return noCard;
-    }
-
-    public ATMState getEnteredCorrectPin() {
-        return enteredCorrectPin;
-    }
-
-    public ATMState getNoCash() {
-        return NoCash;
-    }
 }

@@ -2,6 +2,7 @@ package ATM.ATMState.States;
 
 import ATM.ATM;
 import ATM.ATMState.ATMState;
+import ATM.Card.Card;
 
 /**
  * Created by L on 28.05.2016.
@@ -10,29 +11,40 @@ public class NoCash implements ATMState {
 
 
     private ATM atm;
+    private Card card;
 
-    public NoCash(ATM atm) {
+     NoCash(ATM atm, Card card) {
         this.atm = atm;
+        this.card = card;
     }
 
     @Override
-    public void ejectCard() {
+    public ATMState ejectCard() {
         if (!atm.isATMBlocked()) {
-            atm.setAtmState(atm.getHasCard());
+            return new HasCard(atm,card);
         } else
             System.out.println("\n*********************************");
-            System.out.println("BRAK PIENIĘDZY W BANKOMACIE");
-            System.out.println("BANKOMAT ZABLOKOWANY");
-             System.out.println("*********************************");
+        System.out.println("BRAK PIENIĘDZY W BANKOMACIE");
+        System.out.println("BANKOMAT ZABLOKOWANY");
+        System.out.println("*********************************");
+        return new NoCash(atm,card);
+    }
+
+    @Override
+    public ATMState insertCard() {
+        throw new IllegalStateException();
 
     }
 
     @Override
-    public void insertCard() {}
+    public ATMState enterPin(int pin, int i) {
+        throw new IllegalStateException();
+
+    }
 
     @Override
-    public void enterPin(int pin, int i) {}
+    public ATMState requestCash(int cash) {
+        throw new IllegalStateException();
 
-    @Override
-    public void requestCash(int cash) {}
+    }
 }

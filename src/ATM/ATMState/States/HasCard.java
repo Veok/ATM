@@ -12,7 +12,7 @@ public class HasCard implements ATMState {
     private ATM atm;
     private Card card;
 
-    public HasCard(ATM atm, Card card) {
+    HasCard(ATM atm, Card card) {
         this.atm = atm;
         this.card = card;
 
@@ -20,26 +20,29 @@ public class HasCard implements ATMState {
 
 
     @Override
-    public void ejectCard() {
+    public ATMState ejectCard() {
         System.out.println("Twoja karta zostałą wydana");
-        atm.setAtmState(atm.getNoCard());
+        return new NoCard(atm,card);
     }
 
     @Override
-    public void insertCard() {
+    public ATMState insertCard() {
+        throw new IllegalStateException();
+
     }
 
     @Override
-    public void enterPin(int pin, int i) {
+    public ATMState enterPin(int pin, int i) {
 
-
+        /** Jesli zadany pin jest zgodny z nr pin karty, to nastepuje zmiana stanu na PinEntered.
+         * Jesli przekazana zmienna 'i' bedzie rowna 3, to nasepuje blokada karty i ustawienie stanu atm na NoCard
+         */
         if (pin == card.getPin()) {
 
 
             System.out.println("Podałeś prawidłowy nr PIN");
             card.setCorrectPin(true);
-            atm.setAtmState(atm.getEnteredCorrectPin());
-
+            return new PinEntered(atm,card);
 
         } else if (i < 3) {
             System.out.println("Nieprawidłowy nr PIN");
@@ -47,12 +50,15 @@ public class HasCard implements ATMState {
             System.out.println("Podaj numer PIN");
         } else if (i == 3) {
             card.setActivate(false);
-            atm.setAtmState(atm.getNoCard());
-            atm.getNoCard().insertCard();
+            return new NoCard(atm,card);
         }
+
+        return this;
     }
 
     @Override
-    public void requestCash(int cash) {
+    public ATMState requestCash(int cash) {
+        throw new IllegalStateException();
+
     }
 }

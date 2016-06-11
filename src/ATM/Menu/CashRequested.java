@@ -1,6 +1,7 @@
 package ATM.Menu;
 
 import ATM.ATM;
+import ATM.ATMState.States.StateContext;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
  */
 class CashRequested {
 
-    void requestCash(ATM atm) {
+    void requestCash(ATM atm, StateContext stateContext) {
 
         int cash;
         Scanner in = new Scanner(System.in);
@@ -17,16 +18,17 @@ class CashRequested {
 
         cash = in.nextInt();
 
+        /** Wywolanie metody requestCash w klasie PinEntered */
 
-        atm.requestCash(cash);
+        stateContext.requestCash(cash);
 
         if (cash > atm.getCashInATM()) {
-            toMuchCash(atm);
+            toMuchCash(atm,stateContext);
         }
 
     }
 
-    private void toMuchCash(ATM atm) {
+    private void toMuchCash(ATM atm,StateContext stateContext) {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Czy chcesz wypłacić proponowaną sumę pieniędzy?");
@@ -36,10 +38,10 @@ class CashRequested {
         int choice = in.nextInt();
         switch (choice) {
             case 1: {
-                atm.requestCash(atm.getCashInATM());
+                stateContext.requestCash(atm.getCashInATM());
             }
             case 2: {
-                atm.ejectCard();
+                stateContext.ejectCard();
             }
         }
     }

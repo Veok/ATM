@@ -5,11 +5,11 @@ package ATM.ATMState;
  */
 public interface ATMState {
 
-    void insertCard();
+    ATMState insertCard();
 
-    void ejectCard();
+    ATMState ejectCard();
 
-    void enterPin(int pin, int i);
+    ATMState enterPin(int pin, int i);
 
-    void requestCash(int cash);
+    ATMState requestCash(int cash);
 }

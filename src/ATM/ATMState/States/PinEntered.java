@@ -1,7 +1,8 @@
 package ATM.ATMState.States;
 
-import ATM.ATM;
+import ATM.*;
 import ATM.ATMState.ATMState;
+import ATM.Card.Card;
 
 /**
  * Created by L on 28.05.2016.
@@ -9,28 +10,39 @@ import ATM.ATMState.ATMState;
 public class PinEntered implements ATMState {
 
     private ATM atm;
+    private Card card;
 
 
-    public PinEntered(ATM atm) {
+    PinEntered(ATM atm, Card card) {
         this.atm = atm;
+        this.card = card;
     }
 
     @Override
-    public void ejectCard() {
+    public ATMState ejectCard() {
         System.out.println("Twoja karta została wydana");
-        atm.setAtmState(atm.getNoCard());
+        return new NoCard(atm, card);
     }
 
     @Override
-    public void insertCard() {
+    public ATMState insertCard() {
+        throw new IllegalStateException();
+
     }
 
     @Override
-    public void enterPin(int pin, int i) {
+    public ATMState enterPin(int pin, int i) {
+        throw new IllegalStateException();
+
     }
 
     @Override
-    public void requestCash(int cash) {
+    public ATMState requestCash(int cash) {
+
+        /** Jesli zadana kwota do wyplaty bedzie ponizej zera, oraz jesli zostanie wyplacona prawidlowa kwota
+         to nastepuje przejscie do stanu NoCard.
+         * Wyplacenie calej gotowki z atm ustawia stan NoCash, a bankomat zostaje zablokowany
+         */
 
         atm.getCard().setCorrectPin(false);
         if (cash > atm.getCashInATM()) {
@@ -38,23 +50,27 @@ public class PinEntered implements ATMState {
             int newCash = atm.getCashInATM();
             System.out.println("Możliwa suma pieniędzy do wypłaty: " + newCash);
 
-        } else if(cash<=0){
+        } else {
+            if (cash <= 0) {
 
-            System.out.println("Podałeś nieprawidłową kwotę do wypłaty");
-            System.out.println("Karta została wyciągnięta");
-            atm.setAtmState(atm.getNoCard());
-        }
-         else {
-            System.out.println("Wypłacono " + cash + " zł");
-            atm.setCashInATM(atm.getCashInATM() - cash);
-            System.out.println("Karta została wyciągnięta");
-            atm.setAtmState(atm.getNoCard());
-            if (atm.getCashInATM() <= 0) {
-                atm.setATMBlocked(true);
-                atm.setAtmState(atm.getNoCash());
-
+                System.out.println("Podałeś nieprawidłową kwotę do wypłaty");
+                System.out.println("Karta została wyciągnięta");
+                return new NoCard(atm, card);
+            } else {
+                System.out.println("Wypłacono " + cash + " zł");
+                atm.setCashInATM(atm.getCashInATM() - cash);
+                System.out.println("Karta została wyciągnięta");
+                if (this.atm.getCashInATM() <= 0) {
+                    this.atm.setATMBlocked(true);
+                    return new NoCash(atm, card);
+                }
+                else{
+                    return new NoCard(atm, card);
+                }
             }
         }
+        return this;
+    }
+
 
     }
-}

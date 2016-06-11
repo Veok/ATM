@@ -1,6 +1,7 @@
 package ATM.Menu;
 
 import ATM.ATM;
+import ATM.ATMState.States.StateContext;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
  */
 public class ATMMenu {
 
-    public void menu(ATM atm) {
+    public void menu(ATM atm, StateContext stateContext) {
 
 
         Scanner in = new Scanner(System.in);
@@ -29,15 +30,18 @@ public class ATMMenu {
             switch (userChoice) {
                 case 1: {
 
+
+                    /** sprawdzenie statusu bankomatu (brak pieniedzy = blokada) */
                     if (atm.isATMBlocked()) {
                         System.out.println("\n*********************************");
                         System.out.println("BRAK PIENIĘDZY W BANKOMACIE");
                         System.out.println("BANKOMAT ZABLOKOWANY");
                         System.out.println("*********************************");
                     } else {
-                        atm.insertCard();
+
+                        stateContext.insertCard();
                         CardInserted cardInserted = new CardInserted();
-                        cardInserted.insertCard(atm);
+                        cardInserted.insertCard(atm,stateContext);
                         break;
                     }
                     continue;

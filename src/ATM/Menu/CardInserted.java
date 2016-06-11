@@ -1,6 +1,7 @@
 package ATM.Menu;
 
 import ATM.ATM;
+import ATM.ATMState.States.StateContext;
 
 import java.util.Scanner;
 
@@ -9,19 +10,21 @@ import java.util.Scanner;
  */
 class CardInserted {
 
-    void insertCard(ATM atm) {
+    void insertCard(ATM atm, StateContext stateContext) {
 
 
         if (atm.getCard().isActivate()) {
-            pinChecker(atm);
+            pinChecker(atm, stateContext);
             if (atm.getCard().isActivate()) {
                 CashRequested cashRequested = new CashRequested();
-                cashRequested.requestCash(atm);
+                cashRequested.requestCash(atm, stateContext);
             }
         }
     }
 
-    private void pinChecker(ATM atm) {
+    private void pinChecker(ATM atm, StateContext stateContext) {
+
+        /** Metoda sprawdzajaca zgodnosc wprowadzonego nr pin z nr pin karty */
 
         int i = 0;
         int pin;
@@ -31,9 +34,13 @@ class CardInserted {
             if (atm.getCard().isCorrectPin()) {
                 break;
             } else {
+
                 i++;
                 pin = in.nextInt();
-                atm.enterPin(pin, i);
+
+                /** Przekazanie zmiennej i oraz pin do  metody enterPin, klasy HasCard */
+
+                stateContext.enterPin(pin,i);
             }
         } while ((i < 3));
     }

@@ -45,11 +45,14 @@ public class HasCard implements ATMState {
             return new PinEntered(atm, card);
 
         } else if (i < 3) {
-            System.out.println("Nieprawidłowy nr PIN");
+            int j = i + 1;
+            System.out.println("Nieprawidłowy nr PIN.");
             System.out.println("*****");
-            System.out.println("Podaj numer PIN");
+            System.out.println("Podaj numer PIN. Próba " + j + " z 3");
         } else if (i == 3) {
             card.setActivate(false);
+            System.out.println("Przekroczona ilość prób wpiania nr pin");
+            System.out.println("KARTA ZABLOKOWANA");
             return new NoCard(atm, card);
         }
 

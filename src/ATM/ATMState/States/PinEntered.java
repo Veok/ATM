@@ -49,6 +49,7 @@ public class PinEntered implements ATMState {
             System.out.println("Bankomat nie posiada zadanej sumy pieniędzy");
             int newCash = atm.getCashInATM();
             System.out.println("Możliwa suma pieniędzy do wypłaty: " + newCash);
+            return this;
 
         } else {
             if (cash <= 0) {
@@ -66,7 +67,7 @@ public class PinEntered implements ATMState {
                 }
             }
         }
-        return this;
+        return new NoCard(atm, card);
     }
 
 

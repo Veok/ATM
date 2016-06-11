@@ -41,7 +41,7 @@ public class ATMMenu {
 
                         stateContext.insertCard();
                         CardInserted cardInserted = new CardInserted();
-                        cardInserted.insertCard(atm,stateContext);
+                        cardInserted.insertCard(atm, stateContext);
                         break;
                     }
                     continue;

@@ -1,6 +1,5 @@
 package ATM.ATMState.States;
 
-import ATM.ATM;
 import ATM.ATMState.ATMState;
 
 /**
@@ -20,17 +19,17 @@ public class StateContext {
         this.currentState = newState;
     }
 
-    public void insertCard(){
+    public void insertCard() {
         ATMState newState = currentState.insertCard();
         this.currentState = newState;
     }
 
-    public void enterPin(int pin, int i){
-        ATMState newState = currentState.enterPin(pin,i);
+    public void enterPin(int pin, int i) {
+        ATMState newState = currentState.enterPin(pin, i);
         this.currentState = newState;
     }
 
-    public void requestCash(int cash){
+    public void requestCash(int cash) {
         ATMState newState = currentState.requestCash(cash);
         this.currentState = newState;
     }

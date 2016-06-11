@@ -32,7 +32,7 @@ public class NoCard implements ATMState {
         if (card.isActivate()) {
             System.out.println("****");
             System.out.println("Podaj numer PIN");
-            return new HasCard(atm,card);
+            return new HasCard(atm, card);
         } else {
             System.out.println("*********************************");
             System.out.println("KARTA ZABLOKOWANA");

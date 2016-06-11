@@ -40,7 +40,7 @@ class CardInserted {
 
                 /** Przekazanie zmiennej i oraz pin do  metody enterPin, klasy HasCard */
 
-                stateContext.enterPin(pin,i);
+                stateContext.enterPin(pin, i);
             }
         } while ((i < 3));
     }

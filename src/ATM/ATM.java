@@ -1,10 +1,5 @@
 package ATM;
 
-import ATM.ATMState.ATMState;
-import ATM.ATMState.States.HasCard;
-import ATM.ATMState.States.NoCard;
-import ATM.ATMState.States.NoCash;
-import ATM.ATMState.States.PinEntered;
 import ATM.Card.Card;
 
 /**

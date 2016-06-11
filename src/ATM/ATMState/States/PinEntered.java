@@ -1,6 +1,6 @@
 package ATM.ATMState.States;
 
-import ATM.*;
+import ATM.ATM;
 import ATM.ATMState.ATMState;
 import ATM.Card.Card;
 
@@ -64,13 +64,10 @@ public class PinEntered implements ATMState {
                     this.atm.setATMBlocked(true);
                     return new NoCash(atm, card);
                 }
-                else{
-                    return new NoCard(atm, card);
-                }
             }
         }
         return this;
     }
 
 
-    }
+}

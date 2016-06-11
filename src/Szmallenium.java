@@ -19,7 +19,7 @@ public class Szmallenium {
         /** wyłączenie blokady atm */
         atm.setATMBlocked(false);
         ATMMenu menu = new ATMMenu();
-        StateContext stateContext = new StateContext(new NoCard(atm,card));
+        StateContext stateContext = new StateContext(new NoCard(atm, card));
         menu.menu(atm, stateContext);
     }
 }

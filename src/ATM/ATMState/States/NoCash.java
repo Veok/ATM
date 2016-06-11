@@ -13,7 +13,7 @@ public class NoCash implements ATMState {
     private ATM atm;
     private Card card;
 
-     NoCash(ATM atm, Card card) {
+    NoCash(ATM atm, Card card) {
         this.atm = atm;
         this.card = card;
     }
@@ -21,13 +21,13 @@ public class NoCash implements ATMState {
     @Override
     public ATMState ejectCard() {
         if (!atm.isATMBlocked()) {
-            return new HasCard(atm,card);
+            return new HasCard(atm, card);
         } else
             System.out.println("\n*********************************");
         System.out.println("BRAK PIENIĘDZY W BANKOMACIE");
         System.out.println("BANKOMAT ZABLOKOWANY");
         System.out.println("*********************************");
-        return new NoCash(atm,card);
+        return this;
     }
 
     @Override

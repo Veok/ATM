@@ -22,7 +22,7 @@ public class HasCard implements ATMState {
     @Override
     public ATMState ejectCard() {
         System.out.println("Twoja karta zostałą wydana");
-        return new NoCard(atm,card);
+        return new NoCard(atm, card);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class HasCard implements ATMState {
 
             System.out.println("Podałeś prawidłowy nr PIN");
             card.setCorrectPin(true);
-            return new PinEntered(atm,card);
+            return new PinEntered(atm, card);
 
         } else if (i < 3) {
             System.out.println("Nieprawidłowy nr PIN");
@@ -50,7 +50,7 @@ public class HasCard implements ATMState {
             System.out.println("Podaj numer PIN");
         } else if (i == 3) {
             card.setActivate(false);
-            return new NoCard(atm,card);
+            return new NoCard(atm, card);
         }
 
         return this;

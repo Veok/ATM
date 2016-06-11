@@ -23,12 +23,12 @@ class CashRequested {
         stateContext.requestCash(cash);
 
         if (cash > atm.getCashInATM()) {
-            toMuchCash(atm,stateContext);
+            toMuchCash(atm, stateContext);
         }
 
     }
 
-    private void toMuchCash(ATM atm,StateContext stateContext) {
+    private void toMuchCash(ATM atm, StateContext stateContext) {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Czy chcesz wypłacić proponowaną sumę pieniędzy?");

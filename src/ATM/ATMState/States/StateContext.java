@@ -15,22 +15,18 @@ public class StateContext {
     }
 
     public void ejectCard() {
-        ATMState newState = currentState.ejectCard();
-        this.currentState = newState;
+        this.currentState = currentState.ejectCard();
     }
 
     public void insertCard() {
-        ATMState newState = currentState.insertCard();
-        this.currentState = newState;
+        this.currentState = currentState.insertCard();
     }
 
     public void enterPin(int pin, int i) {
-        ATMState newState = currentState.enterPin(pin, i);
-        this.currentState = newState;
+        this.currentState = currentState.enterPin(pin, i);
     }
 
     public void requestCash(int cash) {
-        ATMState newState = currentState.requestCash(cash);
-        this.currentState = newState;
+        this.currentState = currentState.requestCash(cash);
     }
 }
